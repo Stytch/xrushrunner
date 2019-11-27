@@ -233,7 +233,7 @@ namespace IndieMarc.Platformer
             if (move_input.y < -0.1f && is_grounded)
             {
                 is_crouch = true;
-                move = Vector2.zero;
+                //move = Vector2.zero;
                 capsule_coll.size = new Vector2(coll_start_h.x, coll_start_h.y * crouch_coll_percent);
                 capsule_coll.offset = new Vector2(coll_start_off.x, coll_start_off.y - coll_start_h.y * (1f - crouch_coll_percent) / 2f);
 

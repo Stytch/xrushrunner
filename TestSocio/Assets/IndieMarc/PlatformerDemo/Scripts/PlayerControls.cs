@@ -28,6 +28,8 @@ namespace IndieMarc.Platformer
 
         private static Dictionary<int, PlayerControls> controls = new Dictionary<int, PlayerControls>();
 
+        bool facingR = true;
+
         void Awake()
         {
             controls[player_id] = this;
@@ -47,23 +49,17 @@ namespace IndieMarc.Platformer
             action_hold = false;
             action_press = false;
 
-            if (Input.GetKey(left_key))
-                move += -Vector2.right;
-            if (Input.GetKey(right_key))
-                move += Vector2.right;
-            if (Input.GetKey(up_key))
-                move += Vector2.up;
-            if (Input.GetKey(down_key))
-                move += -Vector2.up;
-            if (Input.GetKey(jump_key))
-                jump_hold = true;
-            if (Input.GetKeyDown(jump_key))
-                jump_press = true;
-            if (Input.GetKey(action_key))
-                action_hold = true;
-            if (Input.GetKeyDown(action_key))
-                action_press = true;
-
+            if (Input.GetKey(left_key)) facingR = false;
+            if (Input.GetKey(right_key)) facingR = true;
+            move += (facingR ? Vector2.right:Vector2.left);
+            if (Input.GetKeyDown(jump_key)) jump_press = true;
+            if (Input.GetKey(up_key)) move += Vector2.up;
+            /*
+            if (Input.GetKey(down_key)) move += -Vector2.up;
+            if (Input.GetKey(jump_key)) jump_hold = true;
+            if (Input.GetKey(action_key)) action_hold = true;
+            if (Input.GetKeyDown(action_key)) action_press = true;
+            */
             float move_length = Mathf.Min(move.magnitude, 1f);
             move = move.normalized * move_length;
         }
