@@ -52,10 +52,10 @@ namespace IndieMarc.Platformer
             if (Input.GetKey(left_key)) facingR = false;
             if (Input.GetKey(right_key)) facingR = true;
             move += (facingR ? Vector2.right:Vector2.left);
-            if (Input.GetKeyDown(jump_key)) jump_press = true;
+            if (Input.GetKey(down_key)) move += -Vector2.up;
             if (Input.GetKey(up_key)) move += Vector2.up;
             /*
-            if (Input.GetKey(down_key)) move += -Vector2.up;
+            if (Input.GetKeyDown(jump_key)) jump_press = true;
             if (Input.GetKey(jump_key)) jump_hold = true;
             if (Input.GetKey(action_key)) action_hold = true;
             if (Input.GetKeyDown(action_key)) action_press = true;
