@@ -548,6 +548,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ec80819f2b286fd4a94401058273799d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  LagTime: 0.5
   player_id: 0
   left_key: 276
   right_key: 275
