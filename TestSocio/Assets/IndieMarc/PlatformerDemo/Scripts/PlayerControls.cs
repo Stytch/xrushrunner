@@ -12,6 +12,7 @@ namespace IndieMarc.Platformer
 
     public class PlayerControls : MonoBehaviour
     {
+        public float LagTime = 0.01f;
         public int player_id;
         public KeyCode left_key;
         public KeyCode right_key;
@@ -49,17 +50,23 @@ namespace IndieMarc.Platformer
             action_hold = false;
             action_press = false;
 
-            if (Input.GetKey(left_key)) facingR = false;
-            if (Input.GetKey(right_key)) facingR = true;
-            move += (facingR ? Vector2.right:Vector2.left);
-            if (Input.GetKey(down_key)) move += -Vector2.up;
-            if (Input.GetKey(up_key)) move += Vector2.up;
+            if (Input.GetKey(left_key))
+                StartCoroutine(LagInput("left"));
+            if (Input.GetKey(right_key))
+                StartCoroutine(LagInput("right"));
+            if (Input.GetKey(down_key))
+                StartCoroutine(LagInput("down"));
+            if (Input.GetKey(up_key))
+                StartCoroutine(LagInput("up"));
             /*
             if (Input.GetKeyDown(jump_key)) jump_press = true;
             if (Input.GetKey(jump_key)) jump_hold = true;
             if (Input.GetKey(action_key)) action_hold = true;
             if (Input.GetKeyDown(action_key)) action_press = true;
             */
+
+            move += (facingR ? Vector2.right : Vector2.left);
+
             float move_length = Mathf.Min(move.magnitude, 1f);
             move = move.normalized * move_length;
         }
@@ -112,6 +119,34 @@ namespace IndieMarc.Platformer
             return list;
         }
 
+        public IEnumerator LagInput(string inputType)
+        {
+            yield return new WaitForSeconds(LagTime);
+
+            switch (inputType)
+            {
+                case "left":
+                    facingR = false;
+                    break;
+
+                case "right":
+                    facingR = true;
+                    break;
+
+                case "up":
+                    move += Vector2.up;
+                    break;
+
+                case "down":
+                    move += -Vector2.up;
+                    break;
+
+                default:
+                    break;
+            }
+
+
+        }
     }
 
 }
