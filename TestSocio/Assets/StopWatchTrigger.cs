@@ -8,7 +8,7 @@ public class StopWatchTrigger : MonoBehaviour
 {
     public bool isStart;
     public Text swText;
-
+    public DetectInput DI;
     private void Start()
     {
         StopWatchManager.stopwatch = new Stopwatch();
@@ -37,6 +37,7 @@ public class StopWatchTrigger : MonoBehaviour
             else
             {
                 StopWatchManager.stopwatch.Stop();
+                DI.DisplayResults();
             }
         }
     }
