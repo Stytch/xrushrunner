@@ -21,11 +21,20 @@ namespace IndieMarc.Platformer
         public KeyCode jump_key;
         public KeyCode action_key;
 
+        [Header("Control Setups")]
+        public bool classicSetup = true;
+        public bool crappySetup1 = false;
+        public bool crappySetup2 = false;
+
         private Vector2 move = Vector2.zero;
         private bool jump_press = false;
         private bool jump_hold = false;
         private bool action_press = false;
         private bool action_hold = false;
+
+        private bool m_classicSetupChange = true;
+        private bool m_crappySetup1Change = false;
+        private bool m_crappySetup2Change = false;
 
         private static Dictionary<int, PlayerControls> controls = new Dictionary<int, PlayerControls>();
 
@@ -43,6 +52,7 @@ namespace IndieMarc.Platformer
 
         void Update()
         {
+            ChangeControls();
 
             move = Vector2.zero;
             jump_hold = false;
@@ -146,6 +156,54 @@ namespace IndieMarc.Platformer
             }
 
 
+        }
+
+        public void ChangeControls()
+        {
+            if (classicSetup && !m_classicSetupChange)  //Si on a mis le setup n°1
+            {
+                m_classicSetupChange = true;
+
+                crappySetup1 = false;
+                m_crappySetup1Change = false;
+                crappySetup2 = false;
+                m_crappySetup2Change = false;
+
+                left_key = KeyCode.LeftArrow;
+                right_key = KeyCode.RightArrow;
+                up_key  = KeyCode.UpArrow;
+                down_key = KeyCode.DownArrow;
+            }
+
+            else if (crappySetup1 && !m_crappySetup1Change)  //Si on a mis le setup n°2
+            {
+                m_crappySetup1Change = true;
+
+                classicSetup = false;
+                m_classicSetupChange = false;
+                crappySetup2 = false;
+                m_crappySetup2Change = false;
+
+                left_key = KeyCode.RightArrow;
+                right_key = KeyCode.LeftArrow;
+                up_key = KeyCode.UpArrow;
+                down_key = KeyCode.DownArrow;
+            }
+
+            else if(crappySetup2 && !m_crappySetup2Change)  //Si on a mis le setup n°3
+            {
+                m_crappySetup2Change = true;
+
+                classicSetup = false;
+                m_classicSetupChange = false;
+                crappySetup1 = false;
+                m_crappySetup1Change = false;
+
+                left_key = KeyCode.LeftArrow;
+                right_key = KeyCode.RightArrow;
+                up_key = KeyCode.UpArrow;
+                down_key = KeyCode.DownArrow;
+            }
         }
     }
 
