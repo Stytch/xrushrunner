@@ -25,6 +25,8 @@ namespace IndieMarc.Platformer
         public bool classicSetup = true;
         public bool crappySetup1 = false;
         public bool crappySetup2 = false;
+        public bool crappySetup3 = false;
+        public bool crappySetup4 = false;
 
         private Vector2 move = Vector2.zero;
         private bool jump_press = false;
@@ -159,7 +161,7 @@ namespace IndieMarc.Platformer
 
         public void ChangeControls()
         {
-            if (classicSetup)  // Si on a mis le setup n°1
+            if (classicSetup)
             {
                 left_key = KeyCode.LeftArrow;
                 right_key = KeyCode.RightArrow;
@@ -167,7 +169,7 @@ namespace IndieMarc.Platformer
                 down_key = KeyCode.DownArrow;
             }
 
-            else if (crappySetup1)  //Si on a mis le setup n°2
+            else if (crappySetup1)  // inverse gauche/droite
             {
                 left_key = KeyCode.RightArrow;
                 right_key = KeyCode.LeftArrow;
@@ -175,12 +177,28 @@ namespace IndieMarc.Platformer
                 down_key = KeyCode.DownArrow;
             }
 
-            else if(crappySetup2)  //Si on a mis le setup n°3
+            else if(crappySetup2)  // inverse haut/bas
             {
                 left_key = KeyCode.LeftArrow;
                 right_key = KeyCode.RightArrow;
                 up_key = KeyCode.DownArrow;
                 down_key = KeyCode.UpArrow;
+            }
+
+            else if (crappySetup3)  // inverse haut/bas et gauche/droite
+            {
+                left_key = KeyCode.RightArrow;
+                right_key = KeyCode.LeftArrow;
+                up_key = KeyCode.DownArrow;
+                down_key = KeyCode.UpArrow;
+            }
+
+            else if (crappySetup4)  // inverse gauche/haut et droite/bas
+            {
+                left_key = KeyCode.UpArrow;
+                right_key = KeyCode.DownArrow;
+                up_key = KeyCode.LeftArrow;
+                down_key = KeyCode.RightArrow;
             }
         }
     }
