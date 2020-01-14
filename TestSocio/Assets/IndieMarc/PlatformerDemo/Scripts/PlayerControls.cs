@@ -25,16 +25,14 @@ namespace IndieMarc.Platformer
         public bool classicSetup = true;
         public bool crappySetup1 = false;
         public bool crappySetup2 = false;
+        public bool crappySetup3 = false;
+        public bool crappySetup4 = false;
 
         private Vector2 move = Vector2.zero;
         private bool jump_press = false;
         private bool jump_hold = false;
         private bool action_press = false;
         private bool action_hold = false;
-
-        private bool m_classicSetupChange = true;
-        private bool m_crappySetup1Change = false;
-        private bool m_crappySetup2Change = false;
 
         private static Dictionary<int, PlayerControls> controls = new Dictionary<int, PlayerControls>();
 
@@ -45,6 +43,11 @@ namespace IndieMarc.Platformer
             controls[player_id] = this;
         }
 
+        private void Start()
+        {
+            ChangeControls();
+        }
+
         void OnDestroy()
         {
             controls.Remove(player_id);
@@ -52,8 +55,6 @@ namespace IndieMarc.Platformer
 
         void Update()
         {
-            ChangeControls();
-
             move = Vector2.zero;
             jump_hold = false;
             jump_press = false;
@@ -160,49 +161,44 @@ namespace IndieMarc.Platformer
 
         public void ChangeControls()
         {
-            if (classicSetup && !m_classicSetupChange)  //Si on a mis le setup n°1
+            if (classicSetup)
             {
-                m_classicSetupChange = true;
-
-                crappySetup1 = false;
-                m_crappySetup1Change = false;
-                crappySetup2 = false;
-                m_crappySetup2Change = false;
-
                 left_key = KeyCode.LeftArrow;
                 right_key = KeyCode.RightArrow;
                 up_key  = KeyCode.UpArrow;
                 down_key = KeyCode.DownArrow;
             }
 
-            else if (crappySetup1 && !m_crappySetup1Change)  //Si on a mis le setup n°2
+            else if (crappySetup1)  // inverse gauche/droite
             {
-                m_crappySetup1Change = true;
-
-                classicSetup = false;
-                m_classicSetupChange = false;
-                crappySetup2 = false;
-                m_crappySetup2Change = false;
-
                 left_key = KeyCode.RightArrow;
                 right_key = KeyCode.LeftArrow;
                 up_key = KeyCode.UpArrow;
                 down_key = KeyCode.DownArrow;
             }
 
-            else if(crappySetup2 && !m_crappySetup2Change)  //Si on a mis le setup n°3
+            else if(crappySetup2)  // inverse haut/bas
             {
-                m_crappySetup2Change = true;
-
-                classicSetup = false;
-                m_classicSetupChange = false;
-                crappySetup1 = false;
-                m_crappySetup1Change = false;
-
                 left_key = KeyCode.LeftArrow;
                 right_key = KeyCode.RightArrow;
                 up_key = KeyCode.DownArrow;
                 down_key = KeyCode.UpArrow;
+            }
+
+            else if (crappySetup3)  // inverse haut/bas et gauche/droite
+            {
+                left_key = KeyCode.RightArrow;
+                right_key = KeyCode.LeftArrow;
+                up_key = KeyCode.DownArrow;
+                down_key = KeyCode.UpArrow;
+            }
+
+            else if (crappySetup4)  // inverse gauche/haut et droite/bas
+            {
+                left_key = KeyCode.UpArrow;
+                right_key = KeyCode.DownArrow;
+                up_key = KeyCode.LeftArrow;
+                down_key = KeyCode.RightArrow;
             }
         }
     }
