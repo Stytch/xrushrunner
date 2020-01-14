@@ -9,6 +9,12 @@ public class StopWatchTrigger : MonoBehaviour
     public bool isStart;
     public Text swText;
 
+    private void Start()
+    {
+        StopWatchManager.stopwatch = new Stopwatch();
+        StopWatchManager.stopwatch.Start();
+    }
+
     void Update()
     {
         if(swText!= null && StopWatchManager.stopwatch != null && StopWatchManager.stopwatch.IsRunning)
@@ -26,8 +32,7 @@ public class StopWatchTrigger : MonoBehaviour
         {
             if (isStart)
             {
-                StopWatchManager.stopwatch = new Stopwatch();
-                StopWatchManager.stopwatch.Start();
+
             }
             else
             {
