@@ -13,14 +13,21 @@ public class TrackerExporter : MonoBehaviour
 
     //PUBLIC
     public Transform Player;
+    public string fileName = "Saved_Data";
 
     private string GetPath()
     {
+        string path;
+
 #if UNITY_EDITOR
-        return Application.dataPath + "/CSV/" + "Saved_data.csv";
+        path = Application.dataPath + "/CSV/";
 #else
-        return Application.dataPath +"/"+"Saved_data.csv";
+        path =Application.dataPath +"/";
 #endif
+
+        int count = Directory.GetFiles(path, fileName + "*.csv").Length;
+
+        return (path + fileName + "_" + (count-1).ToString() +".csv");
     }
 
     bool ExportCsv()
