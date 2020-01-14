@@ -1555,6 +1555,16 @@ PrefabInstance:
       propertyPath: can_jump
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 114086076410299948, guid: 488fef3a70db04a7d975594f7ab7ce56,
+        type: 3}
+      propertyPath: invulnerable
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114086076410299948, guid: 488fef3a70db04a7d975594f7ab7ce56,
+        type: 3}
+      propertyPath: double_jump
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 488fef3a70db04a7d975594f7ab7ce56, type: 3}
 --- !u!1 &1900979990
