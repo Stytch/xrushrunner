@@ -201,8 +201,8 @@ namespace IndieMarc.Platformer
 
                 left_key = KeyCode.LeftArrow;
                 right_key = KeyCode.RightArrow;
-                up_key = KeyCode.UpArrow;
-                down_key = KeyCode.DownArrow;
+                up_key = KeyCode.DownArrow;
+                down_key = KeyCode.UpArrow;
             }
         }
     }
